@@ -31,9 +31,6 @@ class WelcomeController extends Controller {
 	public function index()
 	{
 
-
-        die('hello');
-
 		return view('welcome');
 	}
 
