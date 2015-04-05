@@ -4,8 +4,11 @@ define([
     'backbone',
     'bootstrap',
     'router',
+    'scrollTo',
+    'niceScroll',
+    'respond',
     'load'
-], function($, _, Backbone, Bootstrap, AppManagerRouter, load){
+], function($, _, Backbone, Bootstrap, AppManagerRouter, ScrollTo, NiceScroll, Respond, load){
 
     var AppManager = {
         Models      : {},

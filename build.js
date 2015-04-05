@@ -6,9 +6,24 @@
         moment           : '../vendor/moment/moment',
         text             : '../vendor/require/text',
         bootstrap        : '../vendor/bootstrap/dist/js/bootstrap.min',
+        scrollTo         : '../theme/admin/js/jquery.scrollTo.min',
+        niceScroll       : '../theme/admin/js/jquery.nicescroll',
+        respond          : '../theme/admin/js/respond.min',
         templates        : '../html/templates'
     },
     shim: {
+        niceScroll: {
+            deps: ['jquery'],
+            exports: 'niceScroll'
+        },
+        scrollTo: {
+            deps: ['jquery'],
+            exports: 'scrollTo'
+        },
+        respond: {
+            deps: ['jquery'],
+            exports: 'respond'
+        },
         bootstrap: {
             deps: ['jquery', 'underscore'],
             exports: 'bootstrap'
