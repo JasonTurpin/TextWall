@@ -195,4 +195,5 @@ return [
 
 	],
 
+    'cacheLife' => env('CACHE_LIFE'),
 ];

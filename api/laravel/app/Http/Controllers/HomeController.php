@@ -15,6 +15,7 @@ namespace App\Http\Controllers;
 
 // Include models
 use \Illuminate\Support\Facades\Request;
+use \Illuminate\Support\Facades\Cache;
 use \App\Text;
 
 /**
@@ -43,6 +44,9 @@ class HomeController extends Controller {
             $text->message     = $msg;
             $text->phoneNumber = $phone;
             $text->save();
+
+            // Clear the text message cache
+            Cache::forget('fetchTexts');
         }
 
         // Kill Execution
@@ -57,16 +61,26 @@ class HomeController extends Controller {
      * @return Response
      */
     public function do_fetchTexts($num) {
-        // Fetch last $num text messages
-        $Texts = Text::orderBy('created_at', 'desc')
-            ->take($num)
-            ->get();
+        return Cache::remember(
+            // Cache identifier
+            'fetchTexts',
 
-        // Build a results array
-        $resultArr = array();
-        foreach($Texts as $text) {
-            $resultArr[] = $text->translate();
-        }
-        return $resultArr;
+            // Set cache lifetime
+            config('app.cacheLife'),
+
+            // Returns institution data
+            function() use ($num) {
+                // Fetch last $num text messages
+                $Texts = Text::orderBy('created_at', 'desc')
+                    ->take($num)
+                    ->get();
+
+                // Build a results array
+                $resultArr = array();
+                foreach($Texts as $text) {
+                    $resultArr[] = $text->translate();
+                }
+                return $resultArr;
+            });
     }
 }
