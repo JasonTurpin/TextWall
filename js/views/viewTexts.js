@@ -2,9 +2,10 @@ define([
     'jquery',
     'underscore',
     'backbone',
+    'bootstrap',
     'text!templates/viewTexts.html',
     'collections/textMessages'
-], function($, _, Backbone, ViewTexts, TextMsgs) {
+], function($, _, Backbone, Bootstrap, ViewTexts, TextMsgs) {
     var AppManagerViewsAddon = Backbone.View.extend({
         /**
          * Initialize the view

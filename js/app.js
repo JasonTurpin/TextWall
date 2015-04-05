@@ -2,9 +2,10 @@ define([
     'jquery',
     'underscore',
     'backbone',
+    'bootstrap',
     'router',
     'load'
-], function($, _, Backbone, AppManagerRouter, load){
+], function($, _, Backbone, Bootstrap, AppManagerRouter, load){
 
     var AppManager = {
         Models      : {},
@@ -21,6 +22,5 @@ define([
             load.initialize();
         }
     };
-
     return AppManager;
 });

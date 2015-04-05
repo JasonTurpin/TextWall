@@ -2,8 +2,9 @@ define([
     'jquery',
     'underscore',
     'backbone',
+    'bootstrap',
     'util'
-], function($, _, Bootstrap, Backbone, util){
+], function($, _, Backbone, Bootstrap, util){
     var load = {
         initialize: function() {}
     };

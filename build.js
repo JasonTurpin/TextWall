@@ -5,9 +5,15 @@
         backbone         : '../vendor/backbone/1.1.2/backbone-min',
         moment           : '../vendor/moment/moment',
         text             : '../vendor/require/text',
+        bootstrap        : '../vendor/bootstrap/dist/js/bootstrap.min',
         templates        : '../html/templates'
     },
-    shim: {},
+    shim: {
+        bootstrap: {
+            deps: ['jquery', 'underscore'],
+            exports: 'bootstrap'
+        }
+    },
     baseUrl                : "js",
     name                   : "main",
     out                    : "dist/main.js",
