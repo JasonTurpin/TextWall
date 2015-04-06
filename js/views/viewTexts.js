@@ -23,7 +23,10 @@ define([
             // Initialize text messaging screens
             this.reloadTexts();
 
-            // @todo start 20-30 second timer
+            // Set a 5 second timer
+            setInterval(function() {
+                that.reloadTexts();
+            }, 5000);
         },
 
         /**
