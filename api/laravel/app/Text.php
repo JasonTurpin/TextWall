@@ -37,4 +37,18 @@ class Text extends Model {
      * @var string
      */
     protected $primaryKey = 'text_id';
+
+    /**
+     * Translates object values to new keys
+     *
+     * @return array
+     */
+    public function translate() {
+        return array(
+            'id'       => $this->text_id,
+            'from'     => $this->phoneNumber,
+            'msg'      => $this->message,
+            'dateTime' => $this->created_at,
+        );
+    }
 }

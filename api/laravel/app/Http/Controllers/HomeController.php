@@ -48,4 +48,25 @@ class HomeController extends Controller {
         // Kill Execution
         die;
     }
+
+    /**
+     * Fetches the latest text messages
+     *
+     * @param int $num Number of text messages desired
+     *
+     * @return Response
+     */
+    public function do_fetchTexts($num) {
+        // Fetch last $num text messages
+        $Texts = Text::orderBy('created_at', 'desc')
+            ->take($num)
+            ->get();
+
+        // Build a results array
+        $resultArr = array();
+        foreach($Texts as $text) {
+            $resultArr[] = $text->translate();
+        }
+        return $resultArr;
+    }
 }
