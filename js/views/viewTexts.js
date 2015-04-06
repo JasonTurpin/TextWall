@@ -3,9 +3,11 @@ define([
     'underscore',
     'backbone',
     'bootstrap',
+    'models/config',
     'text!templates/viewTexts.html',
+    'text!templates/header.html',
     'collections/textMessages'
-], function($, _, Backbone, Bootstrap, ViewTexts, TextMsgs) {
+], function($, _, Backbone, Bootstrap, Config, ViewTexts, Header, TextMsgs) {
     var AppManagerViewsAddon = Backbone.View.extend({
         /**
          * Initialize the view
@@ -21,6 +23,29 @@ define([
             // Set context
             var that = this;
 
+            // The last ID used
+            lastID   = 0;
+
+            // Initialize GradeLevels
+            this.config = new config({});
+
+            // Fetch GradeLevels
+            this.config.fetch({
+                // Turn cache off
+                cache: false,
+
+                // AJAX success
+                success: function () {
+                    that.renderHeader();
+                },
+
+                // IF an error occurred
+                error: function (jqXHR, textStatus, errorThrown) {
+                    // @todo handle errors
+                    console.log('an error occurred');
+                }
+            });
+
             // Initialize text messaging screens
             this.reloadTexts();
 
@@ -31,12 +56,32 @@ define([
         },
 
         /**
+         * Renders the header template
+         *
+         * @return void
+         */
+        renderHeader: function() {
+            // Set Context
+            var that = this;
+
+            // Populate header
+            $('#headerData').html(_.template(Header, {config: that.config}));
+        },
+
+        /**
          * Renders new text messages for the page
          *
          * @return void
          */
         renderTexts: function() {
-            console.log(this.TextMessages.models);
+            // Text Messages
+            if (this.TextMessages.length > 0 && this.TextMessages.models[0].get('id') != lastID) {
+                // Reset last ID
+                lastID = this.TextMessages.models[0].get('id');
+
+                // Populate template
+                $('#textsContainer').html(_.template(ViewTexts, {TextMessages: this.TextMessages.models}));
+            }
         },
 
         /**

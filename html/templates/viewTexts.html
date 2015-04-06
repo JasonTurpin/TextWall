@@ -1,1 +1,14 @@
-View Texts
+<% _.each(TextMessages, function(text) { %>
+<div class="activity blue">
+    <span><i class="fa fa-comment-o"></i></span>
+    <div class="activity-desk">
+        <div class="panel col-xs-12">
+            <div class="panel-body">
+                <div class="arrow"></div>
+                <i class="fa fa-mobile "></i><h4><%= text.get('from') %></h4>
+                <p><%= text.get('msg') %></p>
+            </div>
+        </div>
+    </div>
+</div>
+<% }); %>

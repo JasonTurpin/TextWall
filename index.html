@@ -19,6 +19,7 @@
     <link href="/theme/admin/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
     <link href="/theme/admin/css/style.css" rel="stylesheet">
     <link href="/theme/admin/css/style-responsive.css" rel="stylesheet" />
+    <link href="/css/main.css" rel="stylesheet">
 
     <!-- production -->
     <!--<script data-main="dist/main" src="vendor/require/require.min.js" ></script>-->
@@ -27,46 +28,13 @@
 </head>
 <body class="full-width">
 <section id="container" class="">
-    <header class="header white-bg">
-        <a href="/" class="logo" ><i class="fa fa-mobile-phone"></i> <span>Text Wall</span></a>
-    </header>
+    <header id="headerData" class="header white-bg"></header>
     <section id="main-content">
         <section class="wrapper">
             <div class="row">
                 <div class="col-sm-12">
                     <section class="panel">
-                        <div class="panel-body profile-activity">
-                            <div class="activity blue">
-                                  <span>
-                                      <i class="fa fa-comment-o"></i>
-                                  </span>
-                                <div class="activity-desk">
-                                    <div class="panel">
-                                        <div class="panel-body">
-                                            <div class="arrow"></div>
-                                            <i class=" fa fa-clock-o"></i>
-                                            <h4>10:45 AM</h4>
-                                            <p>Purchased new equipments for zonal office setup and stationaries.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="activity alt blue">
-                                  <span>
-                                      <i class="fa fa-comment-o"></i>
-                                  </span>
-                                <div class="activity-desk">
-                                    <div class="panel">
-                                        <div class="panel-body">
-                                            <div class="arrow-alt"></div>
-                                            <i class=" fa fa-clock-o"></i>
-                                            <h4>12:30 AM</h4>
-                                            <p>Lorem ipsum dolor sit amet consiquest dio</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <div class="panel-body profile-activity" id="textsContainer"></div>
                     </section>
                 </div>
             </div>

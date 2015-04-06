@@ -44,9 +44,14 @@ class Text extends Model {
      * @return array
      */
     public function translate() {
+        // Replace phone number
+        $phoneNumber = preg_replace('/[^\d]+/', '', $this->phoneNumber);
+        $phoneNumber = preg_replace('/^(0|1)/', '', $phoneNumber);
+        $phoneNumber = '('.substr($phoneNumber, 0, 3).') ***-****';
+
         return array(
             'id'       => $this->text_id,
-            'from'     => $this->phoneNumber,
+            'from'     => $phoneNumber,
             'msg'      => $this->message,
             'dateTime' => $this->created_at,
         );

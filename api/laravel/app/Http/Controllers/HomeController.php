@@ -54,6 +54,17 @@ class HomeController extends Controller {
     }
 
     /**
+     * Configuration details for view
+     *
+     * @return Response
+     */
+    public function do_config() {
+        return array(
+            'phoneNumber' => config('app.phoneNumber'),
+        );
+    }
+
+    /**
      * Fetches the latest text messages
      *
      * @param int $num Number of text messages desired

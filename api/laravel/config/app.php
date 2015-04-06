@@ -39,7 +39,7 @@ return [
 	|
 	*/
 
-	'timezone' => 'UTC',
+	'timezone' => env('TIMEZONE'),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -195,5 +195,9 @@ return [
 
 	],
 
-    'cacheLife' => env('CACHE_LIFE'),
+    // Cache lifetime (in minutes)
+    'cacheLife'   => env('CACHE_LIFE'),
+
+    // Twilio Phone number
+    'phoneNumber' => env('PHONE_NUMBER'),
 ];
