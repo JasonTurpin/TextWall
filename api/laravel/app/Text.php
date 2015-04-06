@@ -39,6 +39,17 @@ class Text extends Model {
     protected $primaryKey = 'text_id';
 
     /**
+     * Only queries the clean text messages
+     *
+     * @param Object $query Query object
+     *
+     * @return mixed
+     */
+    public function scopeClean($query) {
+        return $query->where('isProfane', '=', '0');
+    }
+
+    /**
      * Translates object values to new keys
      *
      * @return array

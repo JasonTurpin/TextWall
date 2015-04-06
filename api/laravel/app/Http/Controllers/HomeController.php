@@ -17,6 +17,7 @@ namespace App\Http\Controllers;
 use \Illuminate\Support\Facades\Request;
 use \Illuminate\Support\Facades\Cache;
 use \App\Text;
+use \App\Profanity;
 
 /**
  * HomeController - base controller for all API calls
@@ -40,9 +41,26 @@ class HomeController extends Controller {
 
         // IF message and phone number are not empty
         if (!empty($msg) && !empty($phone)) {
+            // Fetch the Profanity regular expressions
+            $Regexes = Cache::rememberForever('profanityRegularExpressions', function() {
+                return Profanity::all();
+            });
+
+            // Set values
             $text = new Text();
             $text->message     = $msg;
             $text->phoneNumber = $phone;
+
+            // Searches for profane words in the text message
+            foreach ($Regexes as $regex) {
+                // IF a profane word is found
+                if ($regex->isMatch($msg)) {
+                    $text->isProfane = 1;
+                    break;
+                }
+            }
+
+            // Save text
             $text->save();
 
             // Clear the text message cache
@@ -82,7 +100,8 @@ class HomeController extends Controller {
             // Returns institution data
             function() use ($num) {
                 // Fetch last $num text messages
-                $Texts = Text::orderBy('created_at', 'desc')
+                $Texts = Text::clean()
+                    ->orderBy('created_at', 'desc')
                     ->take($num)
                     ->get();
 
